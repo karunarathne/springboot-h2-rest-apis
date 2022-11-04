@@ -1,2 +1,5 @@
-# springboot-h2-rest-apis
-Demo project to implement rest APIs with Spring boot and H2 Database
+# To run the application
+mvn spring-boot:run
+
+# To open the h2 console
+http://localhost:8080/h2-console
