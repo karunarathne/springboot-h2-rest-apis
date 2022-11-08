@@ -1,17 +1,17 @@
 package com.scl.devnest.controller;
 
-import java.net.URI;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.scl.devnest.dto.SearchUserDto;
 import com.scl.devnest.dto.UserDto;
@@ -19,6 +19,7 @@ import com.scl.devnest.impl.IUserImpl;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@CrossOrigin(origins = "*")
 public class UserController {
 	
 	@Autowired
@@ -29,7 +30,7 @@ public class UserController {
 		return ResponseEntity.ok(userImpl.findById(id));
 	}
 	
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Page<UserDto>> search(
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "email", required = false) String email,
@@ -43,8 +44,9 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody UserDto dto) throws Exception{
-		userImpl.add(dto);
-		return ResponseEntity.created(new URI(null)).build();
+		dto = userImpl.add(dto);
+		return ResponseEntity.created(ServletUriComponentsBuilder.
+				fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri()).build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

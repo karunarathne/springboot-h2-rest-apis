@@ -2,6 +2,7 @@ package com.scl.devnest.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,6 +51,8 @@ public class UserImpl implements IUserImpl {
 		}
 		
 		User entity = convertToEntity(new User(), dto);
+		
+		entity.setUuid(UUID.randomUUID().toString());
 		entity = userService.add(entity);
 		return convertToDto(new UserDto(), entity, true);
 	}

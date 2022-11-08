@@ -1,2 +1,2 @@
-insert into users (id, uuid, email, password, token, first_name, last_name, status, role) values (1, 'b7b1633d-6f32-43a9-9439-e18a3b439c9f', 'shane.perera@yopmail.com', 'Password@1', '', 'Shane', 'Perera', 'ACTIVE', 'ADMINISTRATOR');
-insert into users (id, uuid, email, password, token, first_name, last_name, status, role) values (2, 'c99d292f-833c-4a7e-a64f-c786d54b6513', 'christina.silva@yopmail.com', 'Password@1', '', 'Cristina', 'Silva', 'ACTIVE', 'USER');
+insert into users (id, uuid, email, password, token, first_name, last_name, status, role) values (1000, 'b7b1633d-6f32-43a9-9439-e18a3b439c9f', 'shane.perera@yopmail.com', 'Password@1', '', 'Shane', 'Perera', 'ACTIVE', 'ADMINISTRATOR');
+insert into users (id, uuid, email, password, token, first_name, last_name, status, role) values (2000, 'c99d292f-833c-4a7e-a64f-c786d54b6513', 'christina.silva@yopmail.com', 'Password@1', '', 'Cristina', 'Silva', 'ACTIVE', 'USER');

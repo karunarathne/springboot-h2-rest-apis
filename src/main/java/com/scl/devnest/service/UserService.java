@@ -78,23 +78,23 @@ public class UserService implements IUserService {
 				
 				if(dto != null) {
 					if(!StringUtil.isNullOrEmpty(dto.getEmail())) {
-						predicate = builder.and(predicate, builder.like(root.get("email"), StringUtil.startsWithText(dto.getEmail())));
+						predicate = builder.and(predicate, builder.like(builder.upper(root.get("email")), StringUtil.startsWithText(dto.getEmail().toUpperCase())));
 					}
 					
 					if(!StringUtil.isNullOrEmpty(dto.getName())) {
 						predicate = builder.and(predicate, builder.or(
-								builder.like(root.get("firstName"), StringUtil.startsWithText(dto.getName())), 
-								builder.like(root.get("lastName"), StringUtil.startsWithText(dto.getName()))
+								builder.like(builder.upper(root.get("firstName")), StringUtil.startsWithText(dto.getName().toUpperCase())), 
+								builder.like(builder.upper(root.get("lastName")), StringUtil.startsWithText(dto.getName().toUpperCase()))
 							)
 						);
 					}
 					
 					if(!StringUtil.isNullOrEmpty(dto.getRole())) {
-						predicate = builder.and(predicate, builder.like(root.get("role"), StringUtil.startsWithText(dto.getRole())));
+						predicate = builder.and(predicate, builder.like(builder.upper(root.get("role")), StringUtil.startsWithText(dto.getRole().toUpperCase())));
 					}
 					
 					if(!StringUtil.isNullOrEmpty(dto.getStatus())) {
-						predicate = builder.and(predicate, builder.like(root.get("status"), StringUtil.startsWithText(dto.getStatus())));
+						predicate = builder.and(predicate, builder.like(builder.upper(root.get("status")), StringUtil.startsWithText(dto.getStatus().toUpperCase())));
 					}
 				}
 				
